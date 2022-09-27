@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Fibonacci</title>
+</head>
+<body>
+
+    <script>
+       function fib(cant){
+        var a = [1, 1];
+        var p1 = 1, p2 = 1;
+        
+        for(let i = 2; i < cant; i++){
+            a.push(p1 + p2);
+            p1 = a[i-1];
+            p2 = a[i];
+        }
+        
+        return a;
+        }
+
+        function imprimir(){
+            let cant = parseInt(document.getElementById("nume").value);
+            var final = fib(cant);
+            var item= document.createElement("li");
+            item.innerHTML="The cant "+cant+" of the serie is "+final;
+            document.getElementById("list").appendChild(item);
+        }
+
+    </script>
+
+    <h1>Fibonacci</h1>
+    <input type="number" id="nume"/>
+    <button type="button" onclick="imprimir()">Click to know the Fibonacci serie</button>
+    <ul id="list"></ul>
+
+</body>
+</html>

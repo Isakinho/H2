@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pig Latin</title>
+</head>
+<body>
+    
+    <script>
+        function pig(frase){
+
+            let c = "aeiou", consonantes = [], v = false, final = [], cont = 0;
+
+            for(let i = 0; i < frase.length; i++){
+
+                for(let j = 0; j < c.length; j++){
+                    if(frase[i] == c[j]){
+                        v = true;
+                    }
+                }
+
+                if(v){
+                    final.push(frase[i]);
+                }else{
+                    consonantes.push(frase[i]);
+                    cont++;
+                }
+
+            }
+
+            for(let i = 0; i < consonantes.length; i++){
+                final.push(consonantes[i]);
+            }
+
+            if(cont == 0){
+                final.push("way")
+            }else{
+                final.push("ay")
+            }
+            return final;
+        }
+
+        function principal(f){
+
+            let frase = [], c1 = 0, aux = 0, final = [];
+
+            while(c1 < f.length){
+
+                if(f[c1] != " "){
+                    frase.push(f[c1]);
+                }else{
+                    final = pig(frase);
+                    
+                    for(let i = 0; i < final.length; i++){
+                        document.write(final[i]);
+                    }
+                    frase = [];
+                    document.write(" ")
+                }
+
+                c1++;
+
+                if(c1 == f.length){
+                    final = pig(frase);
+
+                    for(let i = 0; i < final.length; i++){
+                        document.write(final[i]);
+                    }
+                }
+            }
+
+            document.write("<br>Refresh the page to traduce another phrase");
+
+            }
+
+        function imprimir(){
+            let frase = document.getElementById("f").value;
+            var item= document.createElement("li"); 
+
+            item.innerHTML="The phrase "+frase+" is " + principal(frase);
+            document.getElementById("list").appendChild(item);
+        }
+
+    </script>
+
+    <h1>Pig latin</h1>
+    <input id="f"/>
+    <button type="button" onclick="imprimir()">Click to traduce to pig latin</button>
+    <ul id="list"></ul>
+
+    <br>
+
+</body>
+</html>

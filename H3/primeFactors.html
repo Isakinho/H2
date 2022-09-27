@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function primo(numero){
+            let ans = true;
+
+            for(let i = 2; i < numero; i++){
+                if(numero % i == 0){
+                    ans = false;
+                }
+            }
+            
+            if(ans){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
+
+        function getP(num){
+
+            let a = [], ans = [], cont = 0;
+            
+            for(let i = 2; i <= num; i++){
+                if(primo(i)){
+                    a.push(i);
+                }
+            }
+
+            while(num != 1){
+
+                if(num % a[cont] == 0){
+                    ans.push(a[cont]);
+                    num /= a[cont];
+                }else{
+                    cont++;
+                }
+            }
+
+            return ans;
+
+    }
+
+    function imprimir(){
+        var num = parseInt(document.getElementById("nume").value);
+        var final = getP(num);
+        var item= document.createElement("li");
+        item.innerHTML="The prime factors of "+num+" are "+final;
+        document.getElementById("list").appendChild(item);
+    }
+    </script>
+
+    <h1>Prime factors</h1>
+    <input type="number" id="nume"/>
+    <button type="button" onclick="imprimir()">Click to know the prime factors</button>
+    <ul id="list"></ul>
+
+</body>
+</html>
